@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:subspace/Home/UI/HomeError.dart';
+import 'package:subspace/component/Error.dart';
 import 'package:subspace/Home/UI/HomeLoaded.dart';
-import 'package:subspace/Home/UI/HomeLoading.dart';
+import 'package:subspace/component/Loading.dart';
 import 'package:subspace/Home/bloc/home_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:subspace/Detail/UI/detailpage.dart';
@@ -44,9 +44,9 @@ class _HomeScreenState extends State<HomeScreen> {
           case HomeLoadedstate():
             return HomeLoaded(state, homeBloc);
           case HomeLoadingstate():
-            return HomeLoading();
+            return LoadingScreen();
           default:
-            return HomeError();
+            return ErrorScreen();
         }
       },
     );

@@ -72,8 +72,11 @@ class _HomeLoadedState extends State<HomeLoaded> {
                           widget.state.blogs[index].title,
                           textAlign: TextAlign.start,
                           style: TextStyle(
-                            fontSize: 24.sp,
-                            fontWeight: FontWeight.w500,
+                            fontSize: 22.sp,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: "Poppins",
+                            letterSpacing: 0,
+                            wordSpacing: 0,
                           ),
                         ),
                       ),

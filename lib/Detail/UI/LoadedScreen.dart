@@ -34,7 +34,7 @@ class _LoadedScreenState extends State<LoadedScreen> {
             child: Column(
               children: [
                 Container(
-                  height: 300.h,
+                  height: 250.h,
                   decoration: BoxDecoration(
                     color: Colors.amber,
                     borderRadius: BorderRadius.circular(15.r),

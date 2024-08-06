@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:subspace/Detail/UI/ErrorScreen.dart';
 import 'package:subspace/Detail/UI/LoadedScreen.dart';
-import 'package:subspace/Detail/UI/LoadingScreen.dart';
 import 'package:subspace/Detail/bloc/details_bloc.dart';
 import 'package:subspace/Model/Blog.dart';
+import 'package:subspace/component/Error.dart';
+import 'package:subspace/component/Loading.dart';
 
 class DetailScreen extends StatefulWidget {
   Blog blog;
