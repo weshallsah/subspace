@@ -95,7 +95,7 @@ class _LoadedScreenState extends State<LoadedScreen> {
                                     horizontal: 5.w, vertical: 5.h),
                                 height: 35.h,
                                 width: 35.w,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   // color: Colors.amber,
                                   image: DecorationImage(
                                     image: AssetImage("assets/twitter.png"),
@@ -113,7 +113,7 @@ class _LoadedScreenState extends State<LoadedScreen> {
                                     horizontal: 5.w, vertical: 5.h),
                                 height: 35.h,
                                 width: 35.w,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   // color: Colors.amber,
                                   image: DecorationImage(
                                     image: AssetImage("assets/instagram.png"),
@@ -131,7 +131,7 @@ class _LoadedScreenState extends State<LoadedScreen> {
                                     horizontal: 5.w, vertical: 5.h),
                                 height: 35.h,
                                 width: 35.w,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   // color: Colors.amber,
                                   image: DecorationImage(
                                     image: AssetImage("assets/facebook.png"),
