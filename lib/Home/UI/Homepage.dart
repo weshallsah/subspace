@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:subspace/DB/DateBase.dart';
 import 'package:subspace/component/Error.dart';
 import 'package:subspace/Home/UI/HomeLoaded.dart';
 import 'package:subspace/component/Loading.dart';
@@ -30,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
       listenWhen: (previous, current) => current is HomeActionState,
       listener: (context, state) {
         if (state is HometoDetailState) {
+          DataBase().insertBlog(state.blog);
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -42,6 +44,8 @@ class _HomeScreenState extends State<HomeScreen> {
         // print(state);
         switch (state) {
           case HomeLoadedstate():
+            return HomeLoaded(state, homeBloc);
+          case HomeLoadedOfflinestate():
             return HomeLoaded(state, homeBloc);
           case HomeLoadingstate():
             return LoadingScreen();

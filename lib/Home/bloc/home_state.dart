@@ -16,6 +16,11 @@ class HomeLoadedstate extends HomeState {
   HomeLoadedstate(this.blogs);
 }
 
+class HomeLoadedOfflinestate extends HomeState {
+  List<Blog> blogs;
+  HomeLoadedOfflinestate(this.blogs);
+}
+
 class HometoDetailState extends HomeActionState {
   Blog blog;
   HometoDetailState(this.blog);

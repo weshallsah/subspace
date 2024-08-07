@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:subspace/DB/DateBase.dart';
 import 'package:subspace/Detail/UI/LoadedScreen.dart';
 import 'package:subspace/Detail/bloc/details_bloc.dart';
 import 'package:subspace/Model/Blog.dart';
@@ -16,7 +17,6 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
-  bool isfav = false;
   final DetailsBloc detailsBloc = DetailsBloc();
   @override
   void initState() {
@@ -33,7 +33,12 @@ class _DetailScreenState extends State<DetailScreen> {
       listener: (context, state) {
         switch (state) {
           case FavButtonClikedState():
-            isfav = !isfav;
+            widget.blog.isfav = !widget.blog.isfav;
+            if (widget.blog.isfav) {
+              DataBase().Addfav(widget.blog.id, 1);
+            } else {
+              DataBase().Addfav(widget.blog.id, 0);
+            }
             break;
           case TiwterButtonClikedState():
             print("tiwtter");
@@ -54,7 +59,7 @@ class _DetailScreenState extends State<DetailScreen> {
       builder: (context, state) {
         switch (state) {
           case DetailLoadedState():
-            return LoadedScreen(widget.blog, detailsBloc, isfav);
+            return LoadedScreen(widget.blog, detailsBloc);
           case DetailLoadingState():
             return LoadingScreen();
           default:

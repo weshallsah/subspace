@@ -6,8 +6,7 @@ import 'package:subspace/Model/Blog.dart';
 class LoadedScreen extends StatefulWidget {
   Blog blog;
   DetailsBloc detailsBloc;
-  bool isfav;
-  LoadedScreen(this.blog, this.detailsBloc, this.isfav, {super.key});
+  LoadedScreen(this.blog, this.detailsBloc, {super.key});
 
   @override
   State<LoadedScreen> createState() => _LoadedScreenState();
@@ -39,11 +38,12 @@ class _LoadedScreenState extends State<LoadedScreen> {
                     color: Colors.amber,
                     borderRadius: BorderRadius.circular(15.r),
                     image: DecorationImage(
-                      image: NetworkImage(
-                        widget.blog.url,
-                      ),
-                      fit: BoxFit.cover,
-                    ),
+                        image: widget.blog.image == null
+                            ? NetworkImage(
+                                widget.blog.url,
+                              )
+                            : FileImage(widget.blog.image!),
+                        fit: BoxFit.cover),
                   ),
                 ),
                 Container(
@@ -73,10 +73,11 @@ class _LoadedScreenState extends State<LoadedScreen> {
                           widget.detailsBloc.add(AddFav());
                         },
                         icon: Icon(
-                          !widget.isfav
+                          !widget.blog.isfav
                               ? Icons.favorite_border_outlined
                               : Icons.favorite,
-                          color: !widget.isfav ? Colors.blueGrey : Colors.red,
+                          color:
+                              !widget.blog.isfav ? Colors.blueGrey : Colors.red,
                           size: 35.sp,
                         ),
                       ),

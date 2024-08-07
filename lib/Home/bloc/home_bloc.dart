@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
+import 'package:subspace/DB/DateBase.dart';
 import 'package:subspace/Model/Blog.dart';
 
 part 'home_event.dart';
@@ -22,18 +23,25 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             'x-hasura-admin-secret': adminSecret,
           },
         );
-        if (res.statusCode != 200) {
+        if (res.statusCode == 200) {
           throw "something went wrong";
         }
         final response = json.decode(res.body);
         List<Blog> blogs = [];
         for (var blog in response['blogs']) {
-          blogs.add(Blog(blog['id'], blog['title'], blog['image_url']));
+          blogs.add(
+              Blog(blog['id'], blog['title'], blog['image_url'], null, false));
         }
         emit(HomeLoadedstate(blogs));
       } catch (e) {
         print(e);
-        emit(HomeErrorstate());
+        List<Blog> blogs = await DataBase().fetchusers();
+        print(blogs);
+        if (blogs.length > 0) {
+          emit(HomeLoadedOfflinestate(blogs));
+        } else {
+          emit(HomeErrorstate());
+        }
       }
     });
     on<HomeNavEvent>(
