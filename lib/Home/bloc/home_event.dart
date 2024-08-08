@@ -7,7 +7,11 @@ class HomeInitialEvent extends HomeEvent {}
 
 class HomeNavEvent extends HomeEvent {
   Blog blog;
-  HomeNavEvent(this.blog);
+  VoidCallback getback;
+  HomeNavEvent(this.blog,this.getback);
 }
 
-class AddFavEvent extends HomeEvent {}
+class AddFavEvent extends HomeEvent {
+  Blog blog;
+  AddFavEvent(this.blog);
+}

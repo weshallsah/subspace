@@ -10,7 +10,8 @@ import 'package:subspace/component/Loading.dart';
 
 class DetailScreen extends StatefulWidget {
   Blog blog;
-  DetailScreen(this.blog, {super.key});
+  VoidCallback cliecked;
+  DetailScreen(this.blog, this.cliecked, {super.key});
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();
@@ -33,6 +34,7 @@ class _DetailScreenState extends State<DetailScreen> {
       listener: (context, state) {
         switch (state) {
           case FavButtonClikedState():
+            widget.cliecked();
             widget.blog.isfav = !widget.blog.isfav;
             if (widget.blog.isfav) {
               DataBase().Addfav(widget.blog.id, 1);

@@ -23,7 +23,11 @@ class HomeLoadedOfflinestate extends HomeState {
 
 class HometoDetailState extends HomeActionState {
   Blog blog;
-  HometoDetailState(this.blog);
+  VoidCallback clicked;
+  HometoDetailState(this.blog, this.clicked);
 }
 
-class HomeAddFavState extends HomeActionState {}
+class HomeAddFavState extends HomeActionState {
+  Blog blog;
+  HomeAddFavState(this.blog);
+}

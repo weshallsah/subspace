@@ -13,7 +13,7 @@ class DataBase {
         return;
       }
       final path = await DBname();
-      Database db = await openDatabase(path);
+      Database db = await openDatabase(path, version: 1);
       final istable = await db.query("sqlite_master", columns: ['name']);
       bool iscreate = true;
       istable.forEach((element) {
@@ -50,7 +50,9 @@ class DataBase {
       final path = await DBname();
       Database db = await openDatabase(path);
       final res = await db.query("blogs");
+      print(res);
       for (var u in res) {
+        print(u);
         File? file;
         if (u['Image'] != "" && u['Image'] != null) {
           final temp = await getTemporaryDirectory();
@@ -62,7 +64,7 @@ class DataBase {
       }
       return blogs;
     } catch (err) {
-      print("error :- ${err}");
+      print("fetching error :- ${err}");
     }
   }
 

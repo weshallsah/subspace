@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
+import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 import 'package:subspace/DB/DateBase.dart';
@@ -23,7 +25,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             'x-hasura-admin-secret': adminSecret,
           },
         );
-        if (res.statusCode == 200) {
+        if (res.statusCode != 200) {
           throw "something went wrong";
         }
         final response = json.decode(res.body);
@@ -46,7 +48,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     });
     on<HomeNavEvent>(
       (event, emit) {
-        emit(HometoDetailState(event.blog));
+        emit(HometoDetailState(event.blog, event.getback));
+      },
+    );
+    on<AddFavEvent>(
+      (event, emit) {
+        emit(HomeAddFavState(event.blog));
       },
     );
   }

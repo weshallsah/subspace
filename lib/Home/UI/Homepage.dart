@@ -35,9 +35,20 @@ class _HomeScreenState extends State<HomeScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => DetailScreen(state.blog),
+              builder: (context) => DetailScreen(state.blog, state.clicked),
             ),
           );
+        }
+        if (state is HomeAddFavState) {
+          state.blog.isfav = !state.blog.isfav;
+          if (state.blog.isfav) {
+            DataBase().Addfav(state.blog.id, 1);
+          } else {
+            DataBase().Addfav(state.blog.id, 0);
+          }
+        }
+        if (mounted) {
+          setState(() {});
         }
       },
       builder: (context, state) {
